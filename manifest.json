@@ -1,11 +1,11 @@
 {
   "name": "Flappy Sky",
   "short_name": "Flappy",
-  "start_url": "./index.html",
+  "description": "An enhanced edition of Flappy Bird game.",
+  "start_url": ".",
   "display": "standalone",
-  "background_color": "#70c5ce",
-  "theme_color": "#70c5ce",
-  "orientation": "portrait",
+  "background_color": "#4ec0ca",
+  "theme_color": "#4ec0ca",
   "icons": [
     {
       "src": "assets/icons/icon-192.png",
