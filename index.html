@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Flappy Sky - Enhanced Edition</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Luckiest+Guy&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.0.0/css/all.min.css" rel="stylesheet">
+
+     <!-- Local CSS file -->
+    <link rel="stylesheet" href="style.css">
+
+</head>
+<body class="day-mode">
+    <div id="app-container">
+        <!-- Day/Night Toggle Button -->
+        <div id="mode-switch">
+            <i class="fas fa-moon"></i>
+        </div>
+        
+        <!-- Home Screen -->
+        <div id="home-screen" class="day-mode">
+            <h1 class="game-title">
+                <span>Flappy</span>
+                <span>Sky</span>
+            </h1>
+            <button id="play-btn" class="menu-btn">PLAY</button>
+            <div class="score-display menu-btn">HIGH SCORE: <span id="high-score-value">38</span></div>
+            <button id="settings-btn" class="menu-btn">SETTINGS</button>
+            
+            <!-- Day mode clouds -->
+            <div class="clouds">
+                <div class="cloud" style="width: 150px; height: 45px; top: 20%; --duration: 75s;"></div>
+                <div class="cloud" style="width: 200px; height: 60px; top: 40%; --duration: 60s;"></div>
+                <div class="cloud" style="width: 120px; height: 36px; top: 70%; --duration: 85s;"></div>
+            </div>
+        </div>
+
+        <!-- Settings Screen -->
+        <div id="settings-screen" class="day-mode">
+            <!-- Return Button - NEW -->
+            <div id="return-btn">
+                <i class="fas fa-home"></i>
+            </div>
+            
+            <h1 class="settings-title">SETTINGS</h1>
+            
+            <!-- Username Change Section -->
+            <div class="username-input">
+                <label for="username">PLAYER NAME</label>
+                <input type="text" id="username-input" maxlength="15" placeholder="Enter your name">
+                <button id="update-username-btn">UPDATE NAME</button>
+            </div>
+            
+            <div class="settings-option">
+                <span>SOUND</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="sound-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <div class="settings-option">
+                <span>MUSIC</span>
+                <label class="toggle-switch">
+                    <input type="checkbox" id="music-toggle" checked>
+                    <span class="slider"></span>
+                </label>
+            </div>
+            
+            <button id="back-to-menu-btn" class="menu-btn" style="margin-top: 40px;">RETURN TO HOME</button>
+        </div>
+
+        <!-- Game Container -->
+        <div id="game-container">
+            <div id="background" class="day-mode"></div>
+            
+            <!-- Night mode stars -->
+            <div class="stars"></div>
+            
+            <!-- Day mode clouds -->
+            <div class="clouds">
+                <div class="cloud" style="width: 150px; height: 45px; top: 20%; --duration: 75s;"></div>
+                <div class="cloud" style="width: 200px; height: 60px; top: 50%; --duration: 60s;"></div>
+            </div>
+            
+            <!-- Pause Button - NEW -->
+            <div id="pause-btn">
+                <i class="fas fa-pause"></i>
+            </div>
+            
+            <div id="score-display">0</div>
+            <div id="bird"></div>
+            <div id="foreground" class="day-mode"></div>
+            
+            <!-- Pause Screen - NEW -->
+            <div id="pause-screen" class="day-mode">
+                <h1>PAUSED</h1>
+                <button id="resume-btn" class="menu-btn">RESUME</button>
+                <button id="restart-from-pause-btn" class="menu-btn">RESTART</button>
+                <button id="home-from-pause-btn" class="menu-btn">HOME</button>
+            </div>
+            
+            <div id="game-over" class="day-mode">
+                <h1>GAME OVER</h1>
+                <div id="final-score">Score: 0</div>
+                <button id="restart-btn" class="menu-btn">PLAY AGAIN</button>
+                <button id="share-btn" class="menu-btn">SHARE ON X</button>
+                <button id="home-btn" class="menu-btn">HOME</button>
+            </div>
+        </div>
+
+        <!-- Score Screen -->
+        <div id="score-screen" class="day-mode">
+            <div class="player-name" id="player-name-display">Ahzam</div>
+            <div class="game-logo">FLAPPY SKY</div>
+            <div class="high-score-text">HIGH SCORE</div>
+            <div class="score-value" id="final-high-score">38</div>
+            <button id="ok-btn" class="menu-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Sound Elements -->
+    <audio id="flapSound" src="assets/sounds/flap.ogg" preload="auto"></audio>
+    <audio id="hitSound" src="assets/sounds/hit.ogg" preload="auto"></audio>
+    <audio id="dieSound" src="assets/sounds/die.ogg" preload="auto"></audio>
+    <audio id="scoreSound" src="assets/sounds/score.ogg" preload="auto"></audio>
+    <audio id="bgMusic" src="assets/sounds/music.ogg" loop preload="auto"></audio>
+
+    <!-- Local JavaScript file (body ke end me rakhna best practice hai) -->
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,880 @@
+/* Reset and core styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+            touch-action: manipulation;
+            user-select: none;
+            font-family: 'Fredoka One', cursive;
+        }
+
+        /* Mode-specific styles */
+        body.day-mode {
+            background: linear-gradient(to bottom, #87CEEB, #E0F7FA);
+        }
+        
+        body.night-mode {
+            background: linear-gradient(to bottom, #1a1a2e, #16213e);
+        }
+        
+        /* Main Container Styles */
+        #app-container {
+            position: relative;
+            width: 100%;
+            max-width: 400px;
+            height: 600px;
+            overflow: hidden;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Home Screen Styles */
+        #home-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            z-index: 100;
+            padding: 20px;
+            transition: background 0.5s ease;
+        }
+        
+        #home-screen.day-mode {
+            background: url('assets/images/background2.png') no-repeat center/cover;
+        }
+        
+        #home-screen.night-mode {
+            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+        }
+
+        .game-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 74px;
+            color: #fff;
+            text-align: center;
+            line-height: 1;
+            margin-bottom: 30px;
+            transition: text-shadow 0.5s ease;
+        }
+        
+        .day-mode .game-title {
+            text-shadow:
+                -3px -3px 0 #0095ff,
+                3px -3px 0 #0095ff,
+                -3px 3px 0 #0095ff,
+                3px 3px 0 #0095ff,
+                0px 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .night-mode .game-title {
+            text-shadow:
+                -3px -3px 0 #4a00e0,
+                3px -3px 0 #4a00e0,
+                -3px 3px 0 #4a00e0,
+                3px 3px 0 #4a00e0,
+                0px 4px 12px rgba(138, 43, 226, 0.7);
+        }
+        
+        .game-title span:nth-child(2) {
+            margin-top: -15px;
+            display: block;
+        }
+
+        .menu-btn {
+            font-family: 'Fredoka One', cursive;
+            font-size: 22px;
+            width: 240px;
+            height: 60px;
+            margin: 12px 0;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            cursor: pointer;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+        
+        .menu-btn::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+        
+        .menu-btn::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 100%;
+            transition: all 0.3s;
+            z-index: -1;
+        }
+        
+        .menu-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        
+        .menu-btn:active {
+            transform: translateY(3px);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+        
+        /* Day mode button styles */
+        .day-mode #play-btn {
+            background: linear-gradient(45deg, #ff9a00, #ff6800);
+        }
+        
+        .day-mode #play-btn::before {
+            background: linear-gradient(45deg, #ff6800, #ff9a00);
+        }
+        
+        .day-mode .score-display {
+            background: linear-gradient(45deg, #2196f3, #03a9f4);
+        }
+        
+        .day-mode #settings-btn {
+            background: linear-gradient(45deg, #f9c80e, #f86624);
+        }
+        
+        .day-mode #settings-btn::before {
+            background: linear-gradient(45deg, #f86624, #f9c80e);
+        }
+        
+        /* Night mode button styles */
+        .night-mode #play-btn {
+            background: linear-gradient(45deg, #7209b7, #560bad);
+        }
+        
+        .night-mode #play-btn::before {
+            background: linear-gradient(45deg, #560bad, #7209b7);
+        }
+        
+        .night-mode .score-display {
+            background: linear-gradient(45deg, #3a0ca3, #4361ee);
+        }
+        
+        .night-mode #settings-btn {
+            background: linear-gradient(45deg, #4cc9f0, #4895ef);
+        }
+        
+        .night-mode #settings-btn::before {
+            background: linear-gradient(45deg, #4895ef, #4cc9f0);
+        }
+
+        .menu-btn:hover::before {
+            width: 100%;
+        }
+        
+        /* Score Display Styles */
+        .score-display {
+            font-family: 'Fredoka One', cursive;
+            font-size: 22px;
+            width: 240px;
+            height: 60px;
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: none;
+            border-radius: 30px;
+            color: white;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Mode Switch Styles */
+        #mode-switch {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 200;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .day-mode #mode-switch {
+            background: linear-gradient(135deg, #ffde59, #ff914d);
+            color: #ff5722;
+        }
+        
+        .night-mode #mode-switch {
+            background: linear-gradient(135deg, #2c3e50, #4a69bd);
+            color: #e0e0e0;
+        }
+        
+        #mode-switch i {
+            font-size: 28px;
+            transition: all 0.3s ease;
+        }
+        
+        #mode-switch:hover {
+            transform: scale(1.1) rotate(15deg);
+        }
+        
+        /* Settings Screen Styles */
+        #settings-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 150;
+            padding: 20px;
+            transition: background 0.5s ease;
+        }
+        
+        #settings-screen.day-mode {
+            background: url('assets/images/background2.png') no-repeat center/cover;
+        }
+        
+        #settings-screen.night-mode {
+            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        /* Settings Title Styles */
+        .settings-title {
+            font-family: 'Fredoka One', cursive;
+            font-size: 48px;
+            text-align: center;
+            margin-bottom: 40px;
+            transition: all 0.5s ease;
+        }
+        
+        .day-mode .settings-title {
+            color: #fff;
+            text-shadow:
+                -2px -2px 0 #0095ff,
+                2px -2px 0 #0095ff,
+                -2px 2px 0 #0095ff,
+                2px 2px 0 #0095ff,
+                0px 4px 8px rgba(0, 0, 0, 0.4);
+        }
+        
+        .night-mode .settings-title {
+            color: #fff;
+            text-shadow:
+                -2px -2px 0 #4a00e0,
+                2px -2px 0 #4a00e0,
+                -2px 2px 0 #4a00e0,
+                2px 2px 0 #4a00e0,
+                0px 4px 12px rgba(138, 43, 226, 0.7);
+        }
+        
+        /* Settings Option Styles */
+        .settings-option {
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+            color: white;
+            font-size: 20px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 15px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Username Input Styles */
+        .username-input {
+            width: 80%;
+            margin: 20px 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .username-input label {
+            color: white;
+            font-size: 20px;
+            margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+        }
+        
+        .username-input input {
+            width: 100%;
+            padding: 12px 15px;
+            border-radius: 25px;
+            border: none;
+            font-size: 16px;
+            background: rgba(255, 255, 255, 0.8);
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        
+        .username-input input:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+        
+        .username-input button {
+            margin-top: 15px;
+            padding: 10px 30px;
+            border-radius: 25px;
+            border: none;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .day-mode .username-input button {
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+            color: white;
+        }
+        
+        .night-mode .username-input button {
+            background: linear-gradient(45deg, #4a00e0, #8e2de2);
+            color: white;
+        }
+        
+        .username-input button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .username-input button:active {
+            transform: translateY(1px);
+        }
+        
+        /* Toggle Switch Styles */
+        .toggle-switch {
+            position: relative;
+            display: inline-block;
+            width: 60px;
+            height: 30px;
+        }
+        
+        .toggle-switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 30px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 22px;
+            width: 22px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        .day-mode input:checked + .slider {
+            background-color: #4CAF50;
+        }
+        
+        .night-mode input:checked + .slider {
+            background-color: #7209b7;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(30px);
+        }
+        
+        /* Game Container Styles */
+        #game-container {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            display: none;
+        }
+        
+        /* Background Styles */
+        #background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            transition: background 0.5s ease;
+        }
+        
+        .day-mode #background {
+            background: url('assets/images/background2.png') no-repeat center/cover;
+        }
+        
+        .night-mode #background {
+            background: linear-gradient(to bottom, #1a1a2e 0%, #16213e 100%);
+        }
+        
+        /* Bird Styles */
+        #bird {
+            position: absolute;
+            width: 40px;
+            height: 30px;
+            z-index: 10;
+            image-rendering: crisp-edges;
+            transition: transform 0.1s ease-out;
+            will-change: transform;
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        
+        .day-mode #bird {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30"><path d="M10,15 C14,9 24,9 30,15 L38,7 L30,15 C35,20 35,25 30,25 C20,32 5,25 10,15" fill="%23e74c3c" stroke="%23c0392b" stroke-width="2"/><circle cx="32" cy="10" r="3" fill="white"/><circle cx="32" cy="10" r="1.5" fill="black"/><path d="M7,15 L1,18 L7,15 L1,12 Z" fill="%23e67e22" stroke="%23d35400" stroke-width="1"/></svg>');
+        }
+        
+        .night-mode #bird {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 40 30"><path d="M10,15 C14,9 24,9 30,15 L38,7 L30,15 C35,20 35,25 30,25 C20,32 5,25 10,15" fill="%239b59b6" stroke="%238e44ad" stroke-width="2"/><circle cx="32" cy="10" r="3" fill="white"/><circle cx="32" cy="10" r="1.5" fill="black"/><path d="M7,15 L1,18 L7,15 L1,12 Z" fill="%234a00e0" stroke="%233700b3" stroke-width="1"/></svg>');
+        }
+        
+        /* Pipe Styles */
+        .pipe {
+            position: absolute;
+            width: 65px;
+            z-index: 5;
+            image-rendering: crisp-edges;
+            will-change: left;
+            background-repeat: repeat-y;
+        }
+        
+        .day-mode .pipe {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 100"><rect width="65" height="100" fill="%232ecc71" stroke="%2327ae60" stroke-width="4"/><rect x="5" y="5" width="55" height="90" fill="%2327ae60" stroke="%2327ae60" stroke-width="1"/></svg>');
+        }
+        
+        .night-mode .pipe {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 100"><rect width="65" height="100" fill="%236c5ce7" stroke="%235c48d3" stroke-width="4"/><rect x="5" y="5" width="55" height="90" fill="%235c48d3" stroke="%235c48d3" stroke-width="1"/></svg>');
+        }
+        
+        /* Foreground Styles */
+        #foreground {
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height: 60px;
+            z-index: 15;
+            image-rendering: crisp-edges;
+            background-repeat: repeat-x;
+        }
+        
+        .day-mode #foreground {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60"><rect width="400" height="20" y="40" fill="%23795548"/><path d="M0,40 Q20,25 40,40 Q60,25 80,40 Q100,25 120,40 Q140,25 160,40 Q180,25 200,40 Q220,25 240,40 Q260,25 280,40 Q300,25 320,40 Q340,25 360,40 Q380,25 400,40" fill="%234CAF50" stroke="%23388E3C" stroke-width="1"/></svg>');
+        }
+        
+        .night-mode #foreground {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 60"><rect width="400" height="20" y="40" fill="%235D4037"/><path d="M0,40 Q20,25 40,40 Q60,25 80,40 Q100,25 120,40 Q140,25 160,40 Q180,25 200,40 Q220,25 240,40 Q260,25 280,40 Q300,25 320,40 Q340,25 360,40 Q380,25 400,40" fill="%233949AB" stroke="%23303F9F" stroke-width="1"/></svg>');
+        }
+        
+        /* Score Display Styles */
+        #score-display {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 42px;
+            font-weight: bold;
+            z-index: 20;
+            transition: color 0.5s ease, text-shadow 0.5s ease;
+        }
+        
+        .day-mode #score-display {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .night-mode #score-display {
+            color: #F8F8F2;
+            text-shadow: 0 0 10px rgba(138, 43, 226, 0.8);
+        }
+        
+        /* Game Over Screen Styles */
+        #game-over {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+            backdrop-filter: blur(5px);
+            transition: background 0.5s ease;
+        }
+        
+        .day-mode #game-over {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .night-mode #game-over {
+            background: rgba(26, 26, 46, 0.8);
+        }
+        
+        /* Game Over Title Styles */
+        #game-over h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            animation: pulsate 1.5s infinite alternate;
+        }
+        
+        @keyframes pulsate {
+            0% { opacity: 0.7; transform: scale(0.98); }
+            100% { opacity: 1; transform: scale(1.02); }
+        }
+        
+        .day-mode #game-over h1 {
+            color: #ff5252;
+        }
+        
+        .night-mode #game-over h1 {
+            color: #ff79c6;
+        }
+        
+        /* Final Score Styles */
+        #final-score {
+            font-size: 34px;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+        }
+        
+        .day-mode #final-score {
+            color: white;
+        }
+        
+        .night-mode #final-score {
+            color: #F8F8F2;
+        }
+        
+        .day-mode #restart-btn {
+            background: linear-gradient(45deg, #4CAF50, #2E7D32);
+        }
+        
+        .night-mode #restart-btn {
+            background: linear-gradient(45deg, #4a00e0, #8e2de2);
+        }
+        
+        .day-mode #share-btn {
+            background: linear-gradient(45deg, #1DA1F2, #0d8bd9);
+        }
+        
+        .night-mode #share-btn {
+            background: linear-gradient(45deg, #00b4db, #0083b0);
+        }
+        
+        .day-mode #home-btn {
+            background: linear-gradient(45deg, #fd746c, #ff9068);
+        }
+        
+        .night-mode #home-btn {
+            background: linear-gradient(45deg, #fc466b, #3f5efb);
+        }
+        
+        /* Score Screen Styles */
+        #score-screen {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 200;
+            backdrop-filter: blur(5px);
+            transition: background 0.5s ease;
+        }
+        
+        .day-mode #score-screen {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .night-mode #score-screen {
+            background: rgba(26, 26, 46, 0.8);
+        }
+        
+        /* Stars animation */
+        .night-mode .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            overflow: hidden;
+        }
+        
+        .star {
+            position: absolute;
+            background-color: white;
+            border-radius: 50%;
+            opacity: 0;
+            animation: twinkle var(--duration, 4s) infinite ease-in-out;
+            animation-delay: var(--delay, 0s);
+        }
+        
+        @keyframes twinkle {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 1; }
+        }
+        
+        /* Clouds */
+        .cloud {
+            position: absolute;
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 60"><path d="M30,30 Q50,0 80,30 Q95,10 110,30 Q140,15 160,30 Q175,50 150,50 L40,50 Q15,50 30,30" fill="white" fill-opacity="0.7"/></svg>');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center;
+            z-index: 2;
+            opacity: 0.8;
+            animation: float-cloud linear infinite;
+            animation-duration: var(--duration, 60s);
+        }
+        
+        @keyframes float-cloud {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        
+        /* Player info styles */
+        .player-name {
+            font-size: 32px;
+            margin-bottom: 10px;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+        
+        .day-mode .player-name {
+            color: #FFD700;
+        }
+        
+        .night-mode .player-name {
+            color: #f1fa8c;
+        }
+        
+        .game-logo {
+            font-size: 42px;
+            margin-bottom: 30px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .day-mode .game-logo {
+            color: #FFD700;
+        }
+        
+        .night-mode .game-logo {
+            color: #bd93f9;
+        }
+        
+        .high-score-text {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .day-mode .high-score-text {
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+        
+        .night-mode .high-score-text {
+            color: #F8F8F2;
+            text-shadow: 0 0 10px rgba(139, 233, 253, 0.5);
+        }
+        
+        .score-value {
+            font-size: 52px;
+            margin-bottom: 30px;
+            font-weight: bold;
+            animation: pulsate 1.5s infinite alternate;
+        }
+        
+        .day-mode .score-value {
+            color: #4CAF50;
+            text-shadow: 0 0 15px rgba(76, 175, 80, 0.5);
+        }
+        
+        .night-mode .score-value {
+            color: #50fa7b;
+            text-shadow: 0 0 15px rgba(80, 250, 123, 0.5);
+        }
+        
+        /* Return Button Styles - NEW */
+        #return-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 200;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .day-mode #return-btn {
+            background: linear-gradient(135deg, #fd746c, #ff9068);
+            color: white;
+        }
+        
+        .night-mode #return-btn {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            color: white;
+        }
+        
+        #return-btn i {
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        #return-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Pause Button Styles - NEW */
+        #pause-btn {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            z-index: 200;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        .day-mode #pause-btn {
+            background: linear-gradient(135deg, #fd746c, #ff9068);
+            color: white;
+        }
+        
+        .night-mode #pause-btn {
+            background: linear-gradient(135deg, #fc466b, #3f5efb);
+            color: white;
+        }
+        
+        #pause-btn i {
+            font-size: 24px;
+            transition: all 0.3s ease;
+        }
+        
+        #pause-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        /* Pause Screen Styles - NEW */
+        #pause-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 30;
+            backdrop-filter: blur(5px);
+            transition: background 0.5s ease;
+        }
+        
+        .day-mode #pause-screen {
+            background: rgba(0, 0, 0, 0.7);
+        }
+        
+        .night-mode #pause-screen {
+            background: rgba(26, 26, 46, 0.8);
+        }
+        
+        #pause-screen h1 {
+            font-size: 48px;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+        
+        .day-mode #pause-screen h1 {
+            color: white;
+        }
+        
+        .night-mode #pause-screen h1 {
+            color: #F8F8F2;
+        }
+        
+        /* Responsive adjustments */
+        @media (max-height: 700px) {
+            .game-title {
+                font-size: 60px;
+                margin-bottom: 20px;
+            }
+            
+            .menu-btn {
+                height: 55px;
+                margin: 8px 0;
+            }
+            
+            .settings-title {
+                font-size: 40px;
+                margin-bottom: 30px;
+            }
+        }
+        
+        @media (max-width: 350px) {
+            .menu-btn {
+                width: 200px;
+                font-size: 20px;
+            }
+            
+            .game-title {
+                font-size: 54px;
+            }
+        }
