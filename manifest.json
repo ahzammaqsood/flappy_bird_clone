@@ -1,9 +1,9 @@
 {
-  "name": "Flappy Sky",
+  "name": "Flappy Bird Clone",
   "short_name": "Flappy",
-  "description": "An enhanced edition of Flappy Bird game.",
   "start_url": ".",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#4ec0ca",
   "theme_color": "#4ec0ca",
   "icons": [
